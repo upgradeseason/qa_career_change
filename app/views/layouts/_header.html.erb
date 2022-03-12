@@ -1,0 +1,48 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "qa career change", root_path, id: "logo" %>
+    <nav>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed"
+                data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1"
+                aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <ul class="nav navbar-nav navbar-right collapse navbar-collapse"
+          id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav pull-right">
+        <li><%= link_to "Home",   root_path %></li>
+        <li><%= link_to "Help",   help_path %></li>
+        <% if logged_in? %>
+          <li><%= link_to "Users", users_path %></li> <%# Looked at table to get users_path %>
+          <li class="dropdown"> <%# Specific to Bootstrap %>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Account <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu"> <%# Bootstraps ability to make dropdowns %>
+              <li><%= link_to "Profile", current_user %></li> 
+              <%# Rails autoconverts this to user path %>
+              <%# current_user is a helper method %>
+              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Log out", logout_path, method: :delete %>
+                <%# We have named route(logout_path), we arrange for Rails to issue right kind of request (delete) %>
+                <%# Logout link passes a hash argument %>
+                <%# indicating that it should submit an HTTP DELETE request. %>
+
+        <% else %>
+        <li><%= link_to "Log in", login_path %></li>
+        <%# We actually have a ^login_path, so we dont need a "#" stub. %>
+
+        <% end %>
+      </ul>
+      </ul>
+    </nav>
+  </div>
+</header>

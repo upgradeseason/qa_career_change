@@ -1,0 +1,30 @@
+<% provide(:title, "Log in") %>
+<h1>Log in</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
+    <%# :sessions(symbol is kind of object we're creating) is not an ActiveRecord path so we tell Rails which path to use. %>
+    <%# This is how you make a form_with that isn't an ActiveRecord object. %>
+    <%# Form issues POST request to the login_path that responds to a POST request. %>
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= link_to "(forgot password)", new_password_reset_path %></p>
+
+      <%# The box > %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :remember_me, class: 'checkboox inline' do %>
+        <%= f.check_box :remember_me %>
+        <span>Remember me on this computer</span>
+      <% end %>
+
+
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+
+    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  </div>
+</div>

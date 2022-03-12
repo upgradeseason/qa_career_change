@@ -1,0 +1,15 @@
+<%# Great for rendering user errors %>
+
+<% if object.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger"> <%# alert-danger are bootstrap classes %>
+      The form contains <%= pluralize(object.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% object.errors.full_messages.each do |msg| %>
+    <%# ^Error messgages rely on object.errors.full_messages, but this only applies to an ActiveRecord object %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
